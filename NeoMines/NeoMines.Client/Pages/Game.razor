@@ -11,13 +11,15 @@
     </div>
 
     <div class="mine-grid">
-        @for (var row = 0; row < 9; row++)
+        
+        @for (var row = 0; row < Grid.GetLength(0); row++)
         {
-            @for (var col = 0; col < 6; col++)
+            for (var col = 0; col < Grid.GetLength(1); col++)
             {
                 <button class="mine-cell"></button>
             }
         }
+        
     </div>
     
 </div>

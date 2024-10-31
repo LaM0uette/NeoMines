@@ -16,6 +16,11 @@
     display: flex;
 }
 
+.info-game__bombs_counter
+{
+    display: flex;
+}
+
 .info-game__bomb-icon
 {
     width: 16px;

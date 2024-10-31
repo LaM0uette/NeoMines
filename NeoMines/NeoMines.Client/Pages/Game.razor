@@ -8,10 +8,30 @@
 <div class="game-body">
 
     <div class="info-game">
-        <div class="info-game__bomb-icon"></div>
-        <p class="info-game__bomb-count">NA</p>
-        <p>IsGameOver: @IsGameOver </p>
-        <p>IsWin: @IsWin </p>
+        
+        <div class="info-game__bombs_counter">
+            <div class="info-game__bomb-icon"></div>
+            <p class="info-game__bomb-count">NA</p>
+        </div>
+        
+        <div class="game-state">
+            
+            @if (IsWin)
+            {
+                <h2 class="game-state__title--win">WIN</h2>
+            }
+            else if (IsGameOver)
+            {
+                <h2 class="game-state__title--game-over">GAME OVER</h2>
+            }
+
+        </div>
+
+        <div class="info-game__bombs_counter">
+            <div class="info-game__bomb-icon"></div>
+            <p class="info-game__bomb-count">NA</p>
+        </div>
+        
     </div>
 
     <div class="mine-grid">
@@ -51,6 +71,15 @@
                     
                 </button>
             }
+        }
+        
+    </div>
+    
+    <div class="footer-game">
+
+        @if (IsWin || IsGameOver)
+        {
+            <button class="footer-game__restart-button">RESTART</button>
         }
         
     </div>

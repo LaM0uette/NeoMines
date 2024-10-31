@@ -1,0 +1,17 @@
+﻿@page "/"
+@inherits HomeBase
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Lobby</PageTitle>
+
+<div class="menu">
+    
+    <h1 class="menu__title">NeoMines</h1>
+    
+    <div class="menu__logo"></div>
+    
+    <button class="menu__button" @onclick="GoToGamePage">Easy</button>
+    <button class="menu__button" @onclick="GoToGamePage">Medium</button>
+    <button class="menu__button" @onclick="GoToGamePage">Hard</button>
+    
+</div>

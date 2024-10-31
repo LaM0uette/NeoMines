@@ -9,6 +9,7 @@
     justify-content: center;
 
     overflow: hidden;
+    user-select: none;
 }
 
 .info-game
@@ -56,7 +57,6 @@
     background-color: #cccdd3;
 
     cursor: pointer;
-    user-select: none;
 }
 
 .cell-cell-discovered {background-color: transparent;}

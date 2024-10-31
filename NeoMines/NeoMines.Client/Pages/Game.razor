@@ -18,16 +18,21 @@
             for (var col = 0; col < Columns; col++)
             {
                 var cellClass = "";
-                var cellLogo = "";
+                var cellText = "";
                 var cell = Grid[row, col];
 
                 if (cell is BombCell)
                 {
                     cellClass = "cell-bomb";
-                    cellLogo = "💣";
+                    cellText = "💣";
+                }
+                else if (cell is NumberCell numberCell)
+                {
+                    cellClass = "cell-number";
+                    cellText = numberCell.Number.ToString();
                 }
                 
-                <button class="mine-cell @cellClass">@cellLogo</button>
+                <button class="mine-cell @cellClass">@cellText</button>
             }
         }
         

@@ -49,6 +49,7 @@ public class GameBase : ComponentBase
     private void CreateNewGame()
     {
         CreateBombs();
+        CreateNumbers();
     }
 
     private void CreateBombs()
@@ -65,6 +66,34 @@ public class GameBase : ComponentBase
             {
                 Grid[row, column] = new BombCell(row, column);
                 bombPlaced++;
+            }
+        }
+    }
+
+    private void CreateNumbers()
+    {
+        for (var i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Columns; j++)
+            {
+                if (Grid[i, j] is BombCell)
+                    continue;
+
+                var bombCount = 0;
+
+                for (var x = -1; x <= 1; x++)
+                {
+                    for (var y = -1; y <= 1; y++)
+                    {
+                        var neighborRow = i + x;
+                        var neighborColumn = j + y;
+
+                        if (neighborRow is >= 0 and < Rows && neighborColumn is >= 0 and < Columns && Grid[neighborRow, neighborColumn] is BombCell)
+                            bombCount++;
+                    }
+                }
+
+                Grid[i, j] = new NumberCell(i, j, bombCount);
             }
         }
     }

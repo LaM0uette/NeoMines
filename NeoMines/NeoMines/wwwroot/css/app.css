@@ -1,0 +1,40 @@
+@font-face 
+{
+    font-family: 'mini7';
+    src: url('../fonts/Mini7/Mini7.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face 
+{
+    font-family: 'mini7-bold';
+    src: url('../fonts/Mini7/Mini7Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face 
+{
+    font-family: 'mini7-condensed';
+    src: url('../fonts/Mini7/Mini7Condensed.ttf') format('truetype');
+    font-weight: normal;
+    font-stretch: condensed;
+}
+
+@font-face 
+{
+    font-family: 'mini7-condensed-bold';
+    src: url('../fonts/Mini7/Mini7CondensedBold.ttf') format('truetype');
+    font-weight: bold;
+    font-stretch: condensed;
+}
+
+@font-face 
+{
+    font-family: 'mini7-tight';
+    src: url('../fonts/Mini7/Mini7Tight.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: ultra-condensed;
+}

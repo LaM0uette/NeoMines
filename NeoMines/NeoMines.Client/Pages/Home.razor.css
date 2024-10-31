@@ -1,4 +1,4 @@
-.menu
+.menu-container
 {
     width: 100vw;
     height: 100vh;
@@ -7,6 +7,27 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
+    background-color: #38322e;
+}
+
+.menu
+{
+    width: 340px;
+    height: 520px;
+
+    border-radius: 25px;
+    background: linear-gradient(145deg, #3c3631, #322d29);
+    box-shadow:  10px 10px 29px #2b2623,
+    -10px -10px 29px #453e39;
+}
+
+.menu__title
+{
+    font-size: 3em;
+    font-family: var(--font-mini7-condensed-bold), sans-serif;
+
+    color: #4d6c7d;
 }
 
 .menu__logo

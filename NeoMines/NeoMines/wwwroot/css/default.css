@@ -1,3 +1,17 @@
+:root
+{
+    --font-mini7: 'mini7';
+    --font-mini7-bold: 'mini7-bold';
+    --font-mini7-condensed: 'mini7-condensed';
+    --font-mini7-condensed-bold: 'mini7-condensed-bold';
+    --font-mini7-tight: 'mini7-tight';
+}
+
+body
+{
+    font-family: var(--font-mini7), sans-serif;
+}
+
 button:disabled
 {
     opacity: 1;

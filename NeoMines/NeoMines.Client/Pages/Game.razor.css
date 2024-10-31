@@ -82,7 +82,27 @@
 {
 }
 
-/*GameState*/
+.game-state
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-state__title
+{
+    text-align: center;
+}
+
+.game-state__title--win
+{
+    color: #4f804d;
+}
+
+.game-state__title--game-over
+{
+    color: #7c4b5a;
+}
 
 .game-bombs
 {

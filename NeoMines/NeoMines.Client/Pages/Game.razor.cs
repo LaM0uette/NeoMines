@@ -10,7 +10,7 @@ public class GameBase : ComponentBase
     [Parameter] public int GameModeIndex { get; set; }
     protected GameMode GameMode => (GameMode)GameModeIndex;
     
-    protected Cell[,] Grid = new Cell[9, 6];
+    protected readonly Cell[,] Grid = new Cell[9, 6];
 
     #endregion
 

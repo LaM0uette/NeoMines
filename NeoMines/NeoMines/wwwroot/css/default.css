@@ -1,0 +1,8 @@
+button:disabled
+{
+    opacity: 1;
+    pointer-events: none;
+    background-color: inherit;
+    color: inherit;
+    cursor: not-allowed;
+}

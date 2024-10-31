@@ -88,12 +88,16 @@ public class GameBase : ComponentBase
             cell.HasFlag = !cell.HasFlag;
         
         CurrentFlagCount = Grid.Cast<Cell>().Count(c => c.HasFlag);
+        
+        StateHasChanged();
     }
 
     private void CreateNewGame()
     {
         CreateBombs();
         CreateNumbers();
+        
+        StateHasChanged();
     }
 
     private void CreateBombs()
@@ -152,6 +156,8 @@ public class GameBase : ComponentBase
                 Grid[i, j].IsDiscovered = true;
             }
         }
+        
+        StateHasChanged();
     }
     
     private void RevealAdjacentCells(int row, int column)
@@ -179,6 +185,8 @@ public class GameBase : ComponentBase
                         RevealAdjacentCells(neighborRow, neighborColumn);
             }
         }
+        
+        StateHasChanged();
     }
     
     private bool CheckVictory()

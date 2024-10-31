@@ -25,35 +25,30 @@
                 
                 var cell = Grid[row, col];
                 
-                var undiscoveredClass = !cell.IsDiscovered ? "cell-undiscovered" : "";
-                var cellClass = "";
-                var cellText = "";
+                var undiscoveredClass = !cell.IsDiscovered ? "cell-undiscovered" : "cell-discovered";
                 
-                if (cell.HasFlag)
-                {
-                    cellClass = "cell-flag";
-                    cellText = "🚩";
-                }
-                else if (cell.IsDiscovered)
-                {
-                    if (cell is BombCell)
-                    {
-                        cellClass = "cell-bomb";
-                        cellText = "💣";
-                    }
-                    else if (cell is NumberCell numberCell)
-                    {
-                        cellClass = $"cell-number-{numberCell.Number}";
-                        cellText = numberCell.Number.ToString();
-                    }
-                }
-                
-                <button class="mine-cell @undiscoveredClass @cellClass"
+                <button class="mine-cell @undiscoveredClass"
                         @onclick="() => OnLeftClick(currentRow, currentColumn)"
                         @oncontextmenu="() => OnRightClick(currentRow, currentColumn)"
                         @oncontextmenu:preventDefault="true"
                         disabled="@(IsGameOver || IsWin)">
-                    @cellText
+
+                    @if (cell.HasFlag)
+                    {
+                        <span class="cell-flag">🚩</span>
+                    }
+                    else if (cell.IsDiscovered)
+                    {
+                        if (cell is BombCell)
+                        {
+                            <span class="cell-bomb">💣</span>
+                        }
+                        else if (cell is NumberCell numberCell)
+                        {
+                            <span class="cell-number-@numberCell.Number">@numberCell.Number</span>
+                        }
+                    }
+                    
                 </button>
             }
         }

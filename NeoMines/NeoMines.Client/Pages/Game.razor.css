@@ -40,13 +40,24 @@
 {
     width: 40px;
     height: 40px;
-    background-color: #cccdd3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     border-radius: 4px;
+    outline: none;
+    
+    background-color: #cccdd3;
+
+    cursor: pointer;
+    user-select: none;
 }
 
+.cell-cell-discovered {background-color: transparent;}
 .cell-undiscovered {background-color: #2b2b2e;}
-.cell-bomb {background-color: red;}
-.cell-flag {background-color: chocolate;}
+.cell-bomb {}
+.cell-flag {}
 
 .cell-number-0 {color: transparent;}
 .cell-number-1 {color: #0c08f3;}

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMines", "NeoMines\NeoMines\NeoMines.csproj", "{945AE193-916B-4CCA-87DA-A09EA76F47DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMines.Client", "NeoMines\NeoMines.Client\NeoMines.Client.csproj", "{54E0C432-FD5D-431B-9245-2B60ED0177B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{945AE193-916B-4CCA-87DA-A09EA76F47DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945AE193-916B-4CCA-87DA-A09EA76F47DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945AE193-916B-4CCA-87DA-A09EA76F47DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945AE193-916B-4CCA-87DA-A09EA76F47DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

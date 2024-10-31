@@ -12,7 +12,7 @@
         <div class="header-game">
 
             <div class="game-timer">
-                <img src="img/timer.png" class="game-timer__icon" alt="timer"/>
+                <img src="img/timer.png" class="game-timer__icon" alt="timer" draggable="false"/>
                 <div class="game-timer__timer-container">
                     <p class="game-timer__timer">@FormattedTime</p>
                 </div>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="game-bombs">
-                <img src="img/bomb.png" class="game-bombs__icon" alt="bomb-counter"/>
+                <img src="img/bomb.png" class="game-bombs__icon" alt="bomb-counter" draggable="false"/>
                 <div class="game-bombs__count-left-container">
                     <p><span class="game-bombs__count-left">@CurrentFlagCount</span><span class="game-bombs__count">/@BombCount</span></p>
                 </div>
@@ -57,12 +57,14 @@
                             @onclick="() => OnLeftClick(currentRow, currentColumn)"
                             @oncontextmenu="() => OnRightClick(currentRow, currentColumn)"
                             @oncontextmenu:preventDefault="true"
+                            @onpointerdown="() => { }"
+                            @onpointerdown:preventDefault="true"
                             disabled="@(IsGameOver || IsWin)">
 
                         @if (cell.HasFlag)
                         {
                             <span class="cell-flag">
-                                <img src="img/flag.png" alt="img-flag"/>
+                                <img src="img/flag.png" alt="img-flag" draggable="false"/>
                             </span>
                         }
                         else if (cell.IsDiscovered)
@@ -70,7 +72,7 @@
                             if (cell is BombCell)
                             {
                                 <span class="cell-bomb">
-                                    <img src="img/bomb.png" alt="img-bomb"/>
+                                    <img src="img/bomb.png" alt="img-bomb" draggable="false"/>
                                 </span>
                             }
                             else if (cell is NumberCell numberCell)

@@ -62,7 +62,7 @@
                         @if (cell.HasFlag)
                         {
                             <span class="cell-flag">
-                                <img src="img/cell-flag.png" alt="img-flag"/>
+                                <img src="img/flag.png" alt="img-flag"/>
                             </span>
                         }
                         else if (cell.IsDiscovered)
@@ -70,7 +70,7 @@
                             if (cell is BombCell)
                             {
                                 <span class="cell-bomb">
-                                    <img src="img/cell-bomb.png" alt="img-bomb"/>
+                                    <img src="img/bomb.png" alt="img-bomb"/>
                                 </span>
                             }
                             else if (cell is NumberCell numberCell)

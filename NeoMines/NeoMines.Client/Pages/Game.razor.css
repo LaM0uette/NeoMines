@@ -193,14 +193,14 @@
 
 .cell-undiscovered 
 {
-    background: linear-gradient(145deg, #f17e4d, #d97145);
+    background: linear-gradient(145deg, #dd9a03, #d78f30);
     box-shadow: 4px 4px 6px #cccccc, 
     -4px -4px 6px #f4f4f4;
 }
 
 .cell-undiscovered:hover
 {
-    background: #d16b40;
+    background: #dd9a03;
 }
 
 .cell-txt

@@ -57,13 +57,17 @@
 
                         @if (cell.HasFlag)
                         {
-                            <span class="cell-txt cell-flag">🚩</span>
+                            <span class="cell-flag">
+                                <img src="img/cell-flag.png" alt="img-flag"/>
+                            </span>
                         }
                         else if (cell.IsDiscovered)
                         {
                             if (cell is BombCell)
                             {
-                                <span class="cell-txt cell-bomb">💣</span>
+                                <span class="cell-bomb">
+                                    <img src="img/cell-bomb.png" alt="img-bomb"/>
+                                </span>
                             }
                             else if (cell is NumberCell numberCell)
                             {

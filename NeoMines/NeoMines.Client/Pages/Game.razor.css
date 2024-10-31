@@ -173,8 +173,32 @@
     font-family: var(--font-mini7-condensed-bold), sans-serif;
 }
 
-.cell-flag {}
-.cell-bomb {}
+.cell-flag 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell-flag img
+{
+    width: 80%;
+    height: 80%;
+}
+
+.cell-bomb 
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell-bomb  img
+{
+    width: 80%;
+    height: 80%;
+}
+
 .cell-number-0 { color: transparent; }
 .cell-number-1 { color: #0c08f3; }
 .cell-number-2 { color: #0a8309; }

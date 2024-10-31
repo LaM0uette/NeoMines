@@ -13,9 +13,11 @@ public class GameBase : ComponentBase
     [Parameter] public int GameModeIndex { get; set; }
     
     protected GameMode GameMode => (GameMode)GameModeIndex;
-    protected int BombCount { get; set; }
-    
     protected readonly Cell[,] Grid = new Cell[Rows, Columns];
+    
+    protected int BombCount { get; private set; }
+    protected bool IsGameOver { get; private set; }
+    protected bool IsWin { get; private set; }
 
     #endregion
 
@@ -23,6 +25,9 @@ public class GameBase : ComponentBase
 
     protected override void OnInitialized()
     {
+        IsGameOver = false;
+        IsWin = false;
+        
         for (var i = 0; i < Rows; i++)
         {
             for (var j = 0; j < Columns; j++)
@@ -45,6 +50,30 @@ public class GameBase : ComponentBase
     #endregion
 
     #region Methods
+    
+    protected void OnButtonClick(int row, int column)
+    {
+        var cell = Grid[row, column];
+        
+        if (cell.IsDiscovered || cell.HasFlag) 
+            return;
+        
+        if (cell is BombCell)
+        {
+            IsGameOver = true;
+            RevealAllCells();
+        }
+        else
+        {
+            RevealAdjacentCells(row, column);
+                    
+            if (CheckVictory())
+            {
+                IsWin = true;
+                RevealAllCells();
+            }
+        }
+    }
 
     private void CreateNewGame()
     {
@@ -96,6 +125,61 @@ public class GameBase : ComponentBase
                 Grid[i, j] = new NumberCell(i, j, bombCount);
             }
         }
+    }
+    
+    private void RevealAllCells()
+    {
+        for (var i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Columns; j++)
+            {
+                Grid[i, j].HasFlag = false;
+                Grid[i, j].IsDiscovered = true;
+            }
+        }
+    }
+    
+    private void RevealAdjacentCells(int row, int column)
+    {
+        var cell = Grid[row, column];
+        
+        if (cell.IsDiscovered || cell.HasFlag)
+            return;
+
+        cell.IsDiscovered = true;
+        
+        if (cell is NumberCell numberCell)
+            if (numberCell.Number > 0)
+                return;
+        
+        for (var x = -1; x <= 1; x++)
+        {
+            for (var y = -1; y <= 1; y++)
+            {
+                var neighborRow = row + x;
+                var neighborColumn = column + y;
+
+                if (neighborRow is >= 0 and < Rows && neighborColumn is >= 0 and < Columns)
+                    if (!Grid[neighborRow, neighborColumn].IsDiscovered)
+                        RevealAdjacentCells(neighborRow, neighborColumn);
+            }
+        }
+    }
+    
+    private bool CheckVictory()
+    {
+        for (var i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Columns; j++)
+            {
+                var cell = Grid[i, j];
+                
+                if (!cell.IsDiscovered && cell is not BombCell)
+                    return false;
+            }
+        }
+        
+        return true;
     }
 
     #endregion

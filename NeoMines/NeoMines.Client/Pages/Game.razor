@@ -1,6 +1,7 @@
 ﻿@page "/Game/{GameModeIndex:int}"
 @using NeoMines.Model.Game
 @inherits GameBase
+@rendermode InteractiveWebAssembly
 
 <title>Game - @GameMode</title>
 
@@ -9,6 +10,8 @@
     <div class="info-game">
         <div class="info-game__bomb-icon"></div>
         <p class="info-game__bomb-count">NA</p>
+        <p>IsGameOver: @IsGameOver </p>
+        <p>IsWin: @IsWin </p>
     </div>
 
     <div class="mine-grid">
@@ -17,11 +20,18 @@
         {
             for (var col = 0; col < Columns; col++)
             {
+                var currentRow = row;
+                var currentColumn = col;
+                
                 var cellClass = "";
                 var cellText = "";
                 var cell = Grid[row, col];
 
-                if (cell.HasFlag)
+                if (!cell.IsDiscovered)
+                {
+                    cellClass = "cell-undiscovered";
+                }
+                else if (cell.HasFlag)
                 {
                     cellClass = "cell-flag";
                     cellText = "🚩";
@@ -37,7 +47,10 @@
                     cellText = numberCell.Number.ToString();
                 }
                 
-                <button class="mine-cell @cellClass">@cellText</button>
+                <button class="mine-cell @cellClass"
+                        @onclick="() => OnButtonClick(currentRow, currentColumn)">
+                    @cellText
+                </button>
             }
         }
         

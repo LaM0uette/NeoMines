@@ -21,8 +21,8 @@ public class GameBase : ComponentBase
     protected int CurrentFlagCount { get; private set; }
     
     protected string FormattedTime => FormatTime(_secondsElapsed);
+    private System.Timers.Timer? _timer;
     private int _secondsElapsed;
-    private System.Timers.Timer _timer = null!;
 
     #endregion
 
@@ -83,12 +83,20 @@ public class GameBase : ComponentBase
 
     private void CreateNewGame()
     {
+        if (_timer != null)
+        {
+            _timer.Stop();
+            _timer.Dispose();
+        }
+        
+        _secondsElapsed = 0;
+        
         InitGame();
         CreateBombs();
         CreateNumbers();
         
         _timer = new System.Timers.Timer(1000);
-        _timer.Elapsed += UpdateTime!;
+        _timer.Elapsed += UpdateTime;
         _timer.Start();
         
         StateHasChanged();
@@ -222,7 +230,7 @@ public class GameBase : ComponentBase
         return true;
     }
     
-    private void UpdateTime(object sender, System.Timers.ElapsedEventArgs e)
+    private void UpdateTime(object? sender, System.Timers.ElapsedEventArgs e)
     {
         _secondsElapsed++;
         InvokeAsync(StateHasChanged);

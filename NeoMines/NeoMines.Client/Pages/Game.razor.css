@@ -125,19 +125,20 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(9, 1fr);
     
-    gap: 4px;
+    gap: 8px;
 }
 
 .mine-cell 
 {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 
     display: flex;
     align-items: center;
     justify-content: center;
     
-    border-radius: 4px;
+    border-radius: 5px;
+    border: none;
     outline: none;
     
     background-color: #cccdd3;
@@ -145,8 +146,27 @@
     cursor: pointer;
 }
 
-.cell-cell-discovered {background-color: transparent;}
-.cell-undiscovered {background-color: #2b2b2e;}
+.cell-discovered 
+{
+    background: #e0e0e0;
+    box-shadow: inset 2px 2px 4px #cccccc, 
+    inset -2px -2px 4px #f4f4f4;
+    
+    cursor: default;
+}
+
+.cell-undiscovered 
+{
+    background: linear-gradient(145deg, #f17e4d, #d97145);
+    box-shadow: 4px 4px 6px #cccccc, 
+    -4px -4px 6px #f4f4f4;
+}
+
+.cell-undiscovered:hover
+{
+    background: #d16b40;
+}
+
 .cell-bomb {}
 .cell-flag {}
 

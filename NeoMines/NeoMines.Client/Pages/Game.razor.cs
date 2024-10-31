@@ -26,26 +26,6 @@ public class GameBase : ComponentBase
 
     protected override void OnInitialized()
     {
-        IsGameOver = false;
-        IsWin = false;
-        CurrentFlagCount = 0;
-        
-        for (var i = 0; i < Rows; i++)
-        {
-            for (var j = 0; j < Columns; j++)
-            {
-                Grid[i, j] = new Cell(i, j);
-            }
-        }
-
-        BombCount = GameMode switch
-        {
-            GameMode.Easy => 4,
-            GameMode.Medium => 10,
-            GameMode.Hard => 25,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
         CreateNewGame();
     }
 
@@ -91,13 +71,42 @@ public class GameBase : ComponentBase
         
         StateHasChanged();
     }
+    
+    protected void RestartGame()
+    {
+        CreateNewGame();
+    }
 
     private void CreateNewGame()
     {
+        InitGame();
         CreateBombs();
         CreateNumbers();
         
         StateHasChanged();
+    }
+
+    private void InitGame()
+    {
+        IsGameOver = false;
+        IsWin = false;
+        CurrentFlagCount = 0;
+        
+        for (var i = 0; i < Rows; i++)
+        {
+            for (var j = 0; j < Columns; j++)
+            {
+                Grid[i, j] = new Cell(i, j);
+            }
+        }
+
+        BombCount = GameMode switch
+        {
+            GameMode.Easy => 4,
+            GameMode.Medium => 10,
+            GameMode.Hard => 25,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     private void CreateBombs()

@@ -1,4 +1,5 @@
 ﻿@page "/Game/{GameModeIndex:int}"
+@using NeoMines.Model.Game
 @inherits GameBase
 
 <title>Game - @GameMode</title>
@@ -12,11 +13,21 @@
 
     <div class="mine-grid">
         
-        @for (var row = 0; row < Grid.GetLength(0); row++)
+        @for (var row = 0; row < Rows; row++)
         {
-            for (var col = 0; col < Grid.GetLength(1); col++)
+            for (var col = 0; col < Columns; col++)
             {
-                <button class="mine-cell"></button>
+                var cellClass = "";
+                var cellLogo = "";
+                var cell = Grid[row, col];
+
+                if (cell is BombCell)
+                {
+                    cellClass = "cell-bomb";
+                    cellLogo = "💣";
+                }
+                
+                <button class="mine-cell @cellClass">@cellLogo</button>
             }
         }
         

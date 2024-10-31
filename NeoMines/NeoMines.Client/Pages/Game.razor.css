@@ -43,3 +43,8 @@
     background-color: #292929;
     border-radius: 4px;
 }
+
+.cell-bomb
+{
+    background-color: red;
+}

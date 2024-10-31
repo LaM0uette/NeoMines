@@ -57,17 +57,17 @@
 
                         @if (cell.HasFlag)
                         {
-                            <span class="cell-flag">🚩</span>
+                            <span class="cell-txt cell-flag">🚩</span>
                         }
                         else if (cell.IsDiscovered)
                         {
                             if (cell is BombCell)
                             {
-                                <span class="cell-bomb">💣</span>
+                                <span class="cell-txt cell-bomb">💣</span>
                             }
                             else if (cell is NumberCell numberCell)
                             {
-                                <span class="cell-number-@numberCell.Number">@numberCell.Number</span>
+                                <span class="cell-txt cell-number-@numberCell.Number">@numberCell.Number</span>
                             }
                         }
 

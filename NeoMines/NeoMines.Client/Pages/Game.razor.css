@@ -167,15 +167,20 @@
     background: #d16b40;
 }
 
-.cell-bomb {}
-.cell-flag {}
+.cell-txt
+{
+    font-size: 2em;
+    font-family: var(--font-mini7-condensed-bold), sans-serif;
+}
 
-.cell-number-0 {color: transparent;}
-.cell-number-1 {color: #0c08f3;}
-.cell-number-2 {color: #0a8309;}
-.cell-number-3 {color: #fd0b0a;}
-.cell-number-4 {color: #090980;}
-.cell-number-5 {color: #7e0b09;}
-.cell-number-6 {color: #08837f;}
-.cell-number-7 {color: #0a0a0a;}
-.cell-number-8 {color: #878787;}
+.cell-flag {}
+.cell-bomb {}
+.cell-number-0 { color: transparent; }
+.cell-number-1 { color: #0c08f3; }
+.cell-number-2 { color: #0a8309; }
+.cell-number-3 { color: #fd0b0a; }
+.cell-number-4 { color: #090980; }
+.cell-number-5 { color: #7e0b09; }
+.cell-number-6 { color: #08837f; }
+.cell-number-7 { color: #0a0a0a; }
+.cell-number-8 { color: #878787; }

@@ -18,6 +18,7 @@ public class GameBase : ComponentBase
     protected int BombCount { get; private set; }
     protected bool IsGameOver { get; private set; }
     protected bool IsWin { get; private set; }
+    protected int CurrentFlagCount { get; private set; }
 
     #endregion
 
@@ -27,6 +28,7 @@ public class GameBase : ComponentBase
     {
         IsGameOver = false;
         IsWin = false;
+        CurrentFlagCount = 0;
         
         for (var i = 0; i < Rows; i++)
         {
@@ -51,7 +53,7 @@ public class GameBase : ComponentBase
 
     #region Methods
     
-    protected void OnButtonClick(int row, int column)
+    protected void OnLeftClick(int row, int column)
     {
         var cell = Grid[row, column];
         
@@ -73,6 +75,19 @@ public class GameBase : ComponentBase
                 RevealAllCells();
             }
         }
+    }
+    
+    protected void OnRightClick(int row, int column)
+    {
+        if (IsGameOver || IsWin)
+            return;
+
+        var cell = Grid[row, column];
+        
+        if (!cell.IsDiscovered)
+            cell.HasFlag = !cell.HasFlag;
+        
+        CurrentFlagCount = Grid.Cast<Cell>().Count(c => c.HasFlag);
     }
 
     private void CreateNewGame()

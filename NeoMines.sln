@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMines", "NeoMines\NeoMin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMines.Client", "NeoMines\NeoMines.Client\NeoMines.Client.csproj", "{54E0C432-FD5D-431B-9245-2B60ED0177B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoMines.Model", "NeoMines.Model\NeoMines.Model.csproj", "{1C103CE0-DBBC-4E83-9E9C-41F7432103AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E0C432-FD5D-431B-9245-2B60ED0177B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C103CE0-DBBC-4E83-9E9C-41F7432103AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C103CE0-DBBC-4E83-9E9C-41F7432103AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C103CE0-DBBC-4E83-9E9C-41F7432103AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C103CE0-DBBC-4E83-9E9C-41F7432103AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

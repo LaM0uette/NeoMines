@@ -12,9 +12,9 @@ public class HomeBase : ComponentBase
 
     #region HomeBase
 
-    protected void GoToGamePage()
+    protected void GoToGamePage(int mode)
     {
-        _navigationManager.NavigateTo("/Game");
+        _navigationManager.NavigateTo($"/Game/{mode}");
     }
 
     #endregion

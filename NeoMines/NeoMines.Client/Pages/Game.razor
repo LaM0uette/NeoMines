@@ -2,3 +2,22 @@
 @inherits GameBase
 
 <title>Game - @GameMode</title>
+
+<div class="game-body">
+
+    <div class="info-game">
+        <div class="info-game__bomb-icon"></div>
+        <p class="info-game__bomb-count">NA</p>
+    </div>
+
+    <div class="mine-grid">
+        @for (var row = 0; row < 9; row++)
+        {
+            @for (var col = 0; col < 6; col++)
+            {
+                <button class="mine-cell"></button>
+            }
+        }
+    </div>
+    
+</div>

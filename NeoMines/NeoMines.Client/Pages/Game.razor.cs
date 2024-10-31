@@ -47,6 +47,13 @@ public class GameBase : ComponentBase
         if (cell is BombCell)
         {
             IsGameOver = true;
+            
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer.Elapsed -= UpdateTime;
+            }
+            
             RevealAllCells();
         }
         else
@@ -57,6 +64,12 @@ public class GameBase : ComponentBase
             {
                 IsWin = true;
                 RevealAllCells();
+                
+                if (_timer != null)
+                {
+                    _timer.Stop();
+                    _timer.Elapsed -= UpdateTime;
+                }
             }
         }
     }

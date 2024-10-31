@@ -6,82 +6,86 @@
 <title>Game - @GameMode</title>
 
 <div class="game-body">
-
-    <div class="info-game">
-        
-        <div class="info-game__bombs_counter">
-            <div class="info-game__bomb-icon"></div>
-            <p class="info-game__bomb-count">NA</p>
-        </div>
-        
-        <div class="game-state">
-            
-            @if (IsWin)
-            {
-                <h2 class="game-state__title--win">WIN</h2>
-            }
-            else if (IsGameOver)
-            {
-                <h2 class="game-state__title--game-over">GAME OVER</h2>
-            }
-
-        </div>
-
-        <div class="info-game__bombs_counter">
-            <div class="info-game__bomb-icon"></div>
-            <p class="info-game__bomb-count">NA</p>
-        </div>
-        
-    </div>
-
-    <div class="mine-grid">
-        
-        @for (var row = 0; row < Rows; row++)
-        {
-            for (var col = 0; col < Columns; col++)
-            {
-                var currentRow = row;
-                var currentColumn = col;
-                
-                var cell = Grid[row, col];
-                
-                var undiscoveredClass = !cell.IsDiscovered ? "cell-undiscovered" : "cell-discovered";
-                
-                <button class="mine-cell @undiscoveredClass"
-                        @onclick="() => OnLeftClick(currentRow, currentColumn)"
-                        @oncontextmenu="() => OnRightClick(currentRow, currentColumn)"
-                        @oncontextmenu:preventDefault="true"
-                        disabled="@(IsGameOver || IsWin)">
-
-                    @if (cell.HasFlag)
-                    {
-                        <span class="cell-flag">🚩</span>
-                    }
-                    else if (cell.IsDiscovered)
-                    {
-                        if (cell is BombCell)
-                        {
-                            <span class="cell-bomb">💣</span>
-                        }
-                        else if (cell is NumberCell numberCell)
-                        {
-                            <span class="cell-number-@numberCell.Number">@numberCell.Number</span>
-                        }
-                    }
-                    
-                </button>
-            }
-        }
-        
-    </div>
     
-    <div class="footer-game">
+    <div class="game-body__container">
 
-        @if (IsWin || IsGameOver)
-        {
-            <button class="footer-game__restart-button" @onclick="RestartGame">RESTART</button>
-        }
-        
+        <div class="header-game">
+
+            <div class="game-timer">
+                <img src="img/timer.png" class="game-timer__icon" alt="timer"/>
+                <p class="game-timer__timer">02:34</p>
+            </div>
+
+            <div class="game-state">
+
+                @if (IsWin)
+                {
+                    <h2 class="game-state__title--win">WIN</h2>
+                }
+                else if (IsGameOver)
+                {
+                    <h2 class="game-state__title--game-over">GAME OVER</h2>
+                }
+
+            </div>
+
+            <div class="game-bombs">
+                <img src="img/bomb.png" class="game-bombs__icon" alt="bomb-counter"/>
+                <p><span class="game-bombs__count-left">99</span><span class="game-bombs__count">/99</span></p>
+            </div>
+
+        </div>
+
+        <div class="mine-grid">
+
+            @for (var row = 0; row < Rows; row++)
+            {
+                for (var col = 0; col < Columns; col++)
+                {
+                    var currentRow = row;
+                    var currentColumn = col;
+
+                    var cell = Grid[row, col];
+
+                    var undiscoveredClass = !cell.IsDiscovered ? "cell-undiscovered" : "cell-discovered";
+
+                    <button class="mine-cell @undiscoveredClass"
+                            @onclick="() => OnLeftClick(currentRow, currentColumn)"
+                            @oncontextmenu="() => OnRightClick(currentRow, currentColumn)"
+                            @oncontextmenu:preventDefault="true"
+                            disabled="@(IsGameOver || IsWin)">
+
+                        @if (cell.HasFlag)
+                        {
+                            <span class="cell-flag">🚩</span>
+                        }
+                        else if (cell.IsDiscovered)
+                        {
+                            if (cell is BombCell)
+                            {
+                                <span class="cell-bomb">💣</span>
+                            }
+                            else if (cell is NumberCell numberCell)
+                            {
+                                <span class="cell-number-@numberCell.Number">@numberCell.Number</span>
+                            }
+                        }
+
+                    </button>
+                }
+            }
+
+        </div>
+
+        <div class="footer-game">
+
+            @if (IsWin || IsGameOver)
+            {
+                <button class="footer-game__restart-button" @onclick="RestartGame">RESTART</button>
+            }
+
+        </div>
+
     </div>
-    
+
 </div>

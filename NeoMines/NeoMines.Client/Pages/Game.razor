@@ -21,14 +21,19 @@
                 var cellText = "";
                 var cell = Grid[row, col];
 
-                if (cell is BombCell)
+                if (cell.HasFlag)
+                {
+                    cellClass = "cell-flag";
+                    cellText = "🚩";
+                }
+                else if (cell is BombCell)
                 {
                     cellClass = "cell-bomb";
                     cellText = "💣";
                 }
                 else if (cell is NumberCell numberCell)
                 {
-                    cellClass = "cell-number";
+                    cellClass = $"cell-number-{numberCell.Number}";
                     cellText = numberCell.Number.ToString();
                 }
                 

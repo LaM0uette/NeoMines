@@ -13,7 +13,9 @@
 
             <div class="game-timer">
                 <img src="img/timer.png" class="game-timer__icon" alt="timer"/>
-                <p class="game-timer__timer">02:34</p>
+                <div class="game-timer__timer-container">
+                    <p class="game-timer__timer">@FormattedTime</p>
+                </div>
             </div>
 
             <div class="game-state">
@@ -31,7 +33,9 @@
 
             <div class="game-bombs">
                 <img src="img/bomb.png" class="game-bombs__icon" alt="bomb-counter"/>
-                <p><span class="game-bombs__count-left">99</span><span class="game-bombs__count">/99</span></p>
+                <div class="game-bombs__count-left-container">
+                    <p><span class="game-bombs__count-left">@CurrentFlagCount</span><span class="game-bombs__count">/@BombCount</span></p>
+                </div>
             </div>
 
         </div>

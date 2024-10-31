@@ -78,8 +78,13 @@
     height: 24px;
 }
 
-.game-timer__timer
+.game-timer__timer-container
 {
+    width: 60px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-state
@@ -125,6 +130,15 @@
 {
     width: 24px;
     height: 24px;
+}
+
+.game-bombs__count-left-container
+{
+    width: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-bombs__count-left

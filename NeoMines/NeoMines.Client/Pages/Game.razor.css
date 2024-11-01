@@ -182,8 +182,8 @@
     background: #e0e0e0;
     box-shadow: inset 2px 2px 4px #cccccc, 
     inset -2px -2px 4px #f4f4f4;
-    
-    cursor: default;
+
+    cursor: var(--cursor-default);
 }
 
 .cell-undiscovered 

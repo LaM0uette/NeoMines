@@ -91,7 +91,7 @@ main {
 }
 
     #blazor-error-ui .dismiss {
-        cursor: pointer;
+        cursor: var(--cursor-default);
         position: absolute;
         right: 0.75rem;
         top: 0.5rem;

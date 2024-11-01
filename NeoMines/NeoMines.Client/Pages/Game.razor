@@ -5,7 +5,11 @@
 
 <title>Game - @GameMode</title>
 
-<div class="game-body">
+<div class="game-body"
+     @oncontextmenu="() => { }"
+     @oncontextmenu:preventDefault="true"
+     @onpointerdown="() => { }"
+     @onpointerdown:preventDefault="true">
     
     <div class="game-body__container">
 

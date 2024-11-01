@@ -4,7 +4,11 @@
 
 <PageTitle>Lobby</PageTitle>
 
-<div class="menu-container">
+<div class="menu-container"
+     @oncontextmenu="() => { }"
+     @oncontextmenu:preventDefault="true"
+     @onpointerdown="() => { }"
+     @onpointerdown:preventDefault="true">
 
     <div class="menu">
 

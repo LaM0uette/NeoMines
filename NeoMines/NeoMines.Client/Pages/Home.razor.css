@@ -53,7 +53,6 @@
 {
     all: unset;
     display: inline-block;
-    cursor: pointer;
     
     width: 80%;
     height: 36px;
@@ -68,6 +67,8 @@
     text-align: center;
     font-size: 1.8rem;
     font-family: var(--font-mini7-condensed), sans-serif;
+    
+    cursor: var(--cursor-pointer);
 }
 .menu__button:hover 
 {

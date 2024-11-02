@@ -1,4 +1,4 @@
-﻿namespace NeoMines.Model.Game;
+﻿namespace NeoMines.Model;
 
 public class Cell(int row, int column)
 {

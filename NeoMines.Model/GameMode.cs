@@ -1,4 +1,4 @@
-﻿namespace NeoMines.Model.Game;
+﻿namespace NeoMines.Model;
 
 public enum GameMode
 {

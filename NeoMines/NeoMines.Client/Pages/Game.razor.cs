@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using NeoMines.Model.Game;
+using NeoMines.Model;
 
 namespace NeoMines.Client.Pages;
 

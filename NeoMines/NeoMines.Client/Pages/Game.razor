@@ -1,9 +1,17 @@
 ﻿@page "/Game/{GameModeIndex:int}"
 @using NeoMines.Model.Game
 @inherits GameBase
-@rendermode InteractiveWebAssembly
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
 
 <title>Game - @GameMode</title>
+
+<style>
+    .mine-grid
+    {
+        grid-template-columns: repeat(@Columns, 1fr);
+        grid-template-rows: repeat(@Rows, 1fr);
+    }
+</style>
 
 <div class="game-body"
      @oncontextmenu="() => { }"

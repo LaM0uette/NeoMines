@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using NeoMines.Model.Game;
 
 namespace NeoMines.Client.Pages;
@@ -7,13 +8,20 @@ public class GameBase : ComponentBase
 {
     #region Statements
     
-    protected const int Rows = 9;
-    protected const int Columns = 6;
+    private const int _mobileRows = 9;
+    private const int _mobileColumns = 6;
+    private const int _desktopRows = 12;
+    private const int _desktopColumns = 22;
+    
+    protected int Rows;
+    protected int Columns;
 
     [Parameter] public int GameModeIndex { get; set; }
     
+    [Inject] private IJSRuntime _jsRuntime { get; set; } = null!;
+
     protected GameMode GameMode => (GameMode)GameModeIndex;
-    protected readonly Cell[,] Grid = new Cell[Rows, Columns];
+    protected Cell[,] Grid = null!;
     
     protected int BombCount { get; private set; }
     protected bool IsGameOver { get; private set; }
@@ -27,9 +35,22 @@ public class GameBase : ComponentBase
     #endregion
 
     #region ComponentBase
-
-    protected override void OnInitialized()
+    
+    protected override async Task OnInitializedAsync()
     {
+        var isSmallScreen = await _jsRuntime.InvokeAsync<bool>("isSmallScreen");
+
+        if (isSmallScreen)
+        {
+            Rows = _mobileRows;
+            Columns = _mobileColumns;
+        }
+        else
+        {
+            Rows = _desktopRows;
+            Columns = _desktopColumns;
+        }
+        
         CreateNewGame();
     }
 
@@ -121,6 +142,8 @@ public class GameBase : ComponentBase
         IsWin = false;
         CurrentFlagCount = 0;
         
+        Grid = new Cell[Rows, Columns];
+        
         for (var i = 0; i < Rows; i++)
         {
             for (var j = 0; j < Columns; j++)
@@ -174,7 +197,7 @@ public class GameBase : ComponentBase
                         var neighborRow = i + x;
                         var neighborColumn = j + y;
 
-                        if (neighborRow is >= 0 and < Rows && neighborColumn is >= 0 and < Columns && Grid[neighborRow, neighborColumn] is BombCell)
+                        if (IsValidCell(neighborRow, neighborColumn) && Grid[neighborRow, neighborColumn] is BombCell)
                             bombCount++;
                     }
                 }
@@ -218,13 +241,18 @@ public class GameBase : ComponentBase
                 var neighborRow = row + x;
                 var neighborColumn = column + y;
 
-                if (neighborRow is >= 0 and < Rows && neighborColumn is >= 0 and < Columns)
+                if (IsValidCell(neighborRow, neighborColumn))
                     if (!Grid[neighborRow, neighborColumn].IsDiscovered)
                         RevealAdjacentCells(neighborRow, neighborColumn);
             }
         }
         
         StateHasChanged();
+    }
+    
+    private bool IsValidCell(int row, int column) 
+    {
+        return row >= 0 && row < Rows && column >= 0 && column < Columns;
     }
     
     private bool CheckVictory()

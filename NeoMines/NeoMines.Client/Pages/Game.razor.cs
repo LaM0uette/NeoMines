@@ -8,19 +8,12 @@ public class GameBase : ComponentBase
 {
     #region Statements
     
-    private const int _mobileRows = 9;
-    private const int _mobileColumns = 6;
-    private const int _desktopRows = 12;
-    private const int _desktopColumns = 22;
-    
-    protected int Rows;
-    protected int Columns;
-
     [Parameter] public int GameModeIndex { get; set; }
     
     [Inject] private IJSRuntime _jsRuntime { get; set; } = null!;
 
     protected GameMode GameMode => (GameMode)GameModeIndex;
+    protected GameModeInfo GameModeInfo = null!;
     protected Cell[,] Grid = null!;
     
     protected int BombCount { get; private set; }
@@ -39,16 +32,21 @@ public class GameBase : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         var isSmallScreen = await _jsRuntime.InvokeAsync<bool>("isSmallScreen");
+        var bombsCount = new Dictionary<GameMode, int>();
 
         if (isSmallScreen)
         {
-            Rows = _mobileRows;
-            Columns = _mobileColumns;
+            bombsCount.Add(GameMode.Easy, 4);
+            bombsCount.Add(GameMode.Medium, 8);
+            bombsCount.Add(GameMode.Hard, 16);
+            GameModeInfo = new GameModeInfo(9, 6, bombsCount);
         }
         else
         {
-            Rows = _desktopRows;
-            Columns = _desktopColumns;
+            bombsCount.Add(GameMode.Easy, 25);
+            bombsCount.Add(GameMode.Medium, 50);
+            bombsCount.Add(GameMode.Hard, 99);
+            GameModeInfo = new GameModeInfo(12, 22, bombsCount);
         }
         
         CreateNewGame();
@@ -142,23 +140,20 @@ public class GameBase : ComponentBase
         IsWin = false;
         CurrentFlagCount = 0;
         
-        Grid = new Cell[Rows, Columns];
+        Grid = new Cell[GameModeInfo.Rows, GameModeInfo.Columns];
         
-        for (var i = 0; i < Rows; i++)
+        for (var i = 0; i < GameModeInfo.Rows; i++)
         {
-            for (var j = 0; j < Columns; j++)
+            for (var j = 0; j < GameModeInfo.Columns; j++)
             {
                 Grid[i, j] = new Cell(i, j);
             }
         }
 
-        BombCount = GameMode switch
-        {
-            GameMode.Easy => 4,
-            GameMode.Medium => 10,
-            GameMode.Hard => 25,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        if (GameModeInfo.BombsCount.TryGetValue(GameMode, out var bombsCount))
+            BombCount = bombsCount;
+        else
+            throw new ArgumentOutOfRangeException();
     }
 
     private void CreateBombs()
@@ -168,8 +163,8 @@ public class GameBase : ComponentBase
         
         while (bombPlaced < BombCount)
         {
-            var row = random.Next(Rows);
-            var column = random.Next(Columns);
+            var row = random.Next(GameModeInfo.Rows);
+            var column = random.Next(GameModeInfo.Columns);
 
             if (Grid[row, column] is not BombCell)
             {
@@ -181,9 +176,9 @@ public class GameBase : ComponentBase
 
     private void CreateNumbers()
     {
-        for (var i = 0; i < Rows; i++)
+        for (var i = 0; i < GameModeInfo.Rows; i++)
         {
-            for (var j = 0; j < Columns; j++)
+            for (var j = 0; j < GameModeInfo.Columns; j++)
             {
                 if (Grid[i, j] is BombCell)
                     continue;
@@ -209,9 +204,9 @@ public class GameBase : ComponentBase
     
     private void RevealAllCells()
     {
-        for (var i = 0; i < Rows; i++)
+        for (var i = 0; i < GameModeInfo.Rows; i++)
         {
-            for (var j = 0; j < Columns; j++)
+            for (var j = 0; j < GameModeInfo.Columns; j++)
             {
                 Grid[i, j].HasFlag = false;
                 Grid[i, j].IsDiscovered = true;
@@ -252,14 +247,14 @@ public class GameBase : ComponentBase
     
     private bool IsValidCell(int row, int column) 
     {
-        return row >= 0 && row < Rows && column >= 0 && column < Columns;
+        return row >= 0 && row < GameModeInfo.Rows && column >= 0 && column < GameModeInfo.Columns;
     }
     
     private bool CheckVictory()
     {
-        for (var i = 0; i < Rows; i++)
+        for (var i = 0; i < GameModeInfo.Rows; i++)
         {
-            for (var j = 0; j < Columns; j++)
+            for (var j = 0; j < GameModeInfo.Columns; j++)
             {
                 var cell = Grid[i, j];
                 

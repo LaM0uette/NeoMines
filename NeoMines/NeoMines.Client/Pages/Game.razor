@@ -7,8 +7,8 @@
 <style>
     .mine-grid
     {
-        grid-template-columns: repeat(@Columns, 1fr);
-        grid-template-rows: repeat(@Rows, 1fr);
+        grid-template-columns: repeat(@GameModeInfo.Columns, 1fr);
+        grid-template-rows: repeat(@GameModeInfo.Rows, 1fr);
     }
 </style>
 
@@ -53,9 +53,9 @@
 
         <div class="mine-grid">
 
-            @for (var row = 0; row < Rows; row++)
+            @for (var row = 0; row < GameModeInfo.Rows; row++)
             {
-                for (var col = 0; col < Columns; col++)
+                for (var col = 0; col < GameModeInfo.Columns; col++)
                 {
                     var currentRow = row;
                     var currentColumn = col;

@@ -11,6 +11,7 @@ public class GameBase : ComponentBase
     [Parameter] public int GameModeIndex { get; set; }
     
     [Inject] private IJSRuntime _jsRuntime { get; set; } = null!;
+    [Inject] private NavigationManager _navigationManager { get; set; } = null!;
 
     protected GameMode GameMode => (GameMode)GameModeIndex;
     protected GameModeInfo GameModeInfo = null!;
@@ -106,6 +107,11 @@ public class GameBase : ComponentBase
         CurrentFlagCount = Grid.Cast<Cell>().Count(c => c.HasFlag);
         
         StateHasChanged();
+    }
+    
+    protected void ReturnToMenu()
+    {
+        _navigationManager.NavigateTo("/");
     }
     
     protected void RestartGame()
